@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>DAWG - Skills Development</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app" data-color-scheme="dark">
+        <!-- Skills Screen (Main Landing Screen) -->
+        <div class="screen active" id="skillsScreen">
+            <header class="skills-header">
+                <div class="top-bar">
+                    <span class="skills-text">SKILLS.</span>
+                    <button class="upgrade-btn">⚡ UPGRADE</button>
+                </div>
+            </header>
+
+            <div class="skills-container">
+                <div class="hexagon-container">
+                    <svg class="hexagon-chart" viewBox="0 0 400 400" width="350" height="350">
+                        <!-- Hexagon background grid -->
+                        <g class="hexagon-grid">
+                            <polygon points="200,50 320,125 320,275 200,350 80,275 80,125" fill="none" stroke="#333" stroke-width="1" opacity="0.3"/>
+                            <polygon points="200,80 290,140 290,260 200,320 110,260 110,140" fill="none" stroke="#333" stroke-width="1" opacity="0.3"/>
+                            <polygon points="200,110 260,155 260,245 200,290 140,245 140,155" fill="none" stroke="#333" stroke-width="1" opacity="0.3"/>
+                        </g>
+                        
+                        <!-- Skill data polygon -->
+                        <polygon id="skillsPolygon" points="" fill="rgba(0,255,136,0.1)" stroke="#00FF88" stroke-width="2"/>
+                        
+                        <!-- Skill labels and values -->
+                        <g class="skill-labels">
+                            <g class="skill-item" data-skill="physical">
+                                <text x="200" y="35" text-anchor="middle" class="skill-label">PHYSICAL</text>
+                                <text x="200" y="50" text-anchor="middle" class="skill-value">45</text>
+                            </g>
+                            <g class="skill-item" data-skill="social">
+                                <text x="340" y="130" text-anchor="middle" class="skill-label">SOCIAL</text>
+                                <text x="340" y="145" text-anchor="middle" class="skill-value">25</text>
+                            </g>
+                            <g class="skill-item" data-skill="discipline">
+                                <text x="340" y="270" text-anchor="middle" class="skill-label">DISCIPLINE</text>
+                                <text x="340" y="285" text-anchor="middle" class="skill-value">55</text>
+                            </g>
+                            <g class="skill-item" data-skill="mental">
+                                <text x="200" y="375" text-anchor="middle" class="skill-label">MENTAL</text>
+                                <text x="200" y="390" text-anchor="middle" class="skill-value">30</text>
+                            </g>
+                            <g class="skill-item" data-skill="intellect">
+                                <text x="60" y="270" text-anchor="middle" class="skill-label">INTELLECT</text>
+                                <text x="60" y="285" text-anchor="middle" class="skill-value">35</text>
+                            </g>
+                            <g class="skill-item" data-skill="ambition">
+                                <text x="60" y="130" text-anchor="middle" class="skill-label">AMBITION</text>
+                                <text x="60" y="145" text-anchor="middle" class="skill-value">20</text>
+                            </g>
+                        </g>
+                        
+                        <!-- Center pointer -->
+                        <g class="center-pointer">
+                            <polygon points="200,190 210,200 200,210 190,200" fill="white"/>
+                        </g>
+                    </svg>
+                    
+                    <div class="overall-rating">
+                        <div class="rating-label">OVERALL RATING</div>
+                        <div class="rating-value" id="overallRating">13</div>
+                    </div>
+                </div>
+                
+                <div class="skills-instruction">SELECT A SKILL TO VIEW PROGRESS.</div>
+            </div>
+        </div>
+
+        <!-- Tasks Screen -->
+        <div class="screen" id="tasksScreen">
+            <header class="app-header">
+                <div class="top-bar">
+                    <span class="home-text">TASKS</span>
+                    <button class="upgrade-btn">⚡ UPGRADE</button>
+                </div>
+                
+                <div class="level-info">
+                    <span class="level-text" id="levelText">LEVEL 02. BEAGLE 🐕</span>
+                </div>
+                
+                <div class="gladiator-title" id="animalTitle">THE GLADIATOR</div>
+                
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-icon">🔥</span>
+                        <span class="stat-value" id="streakValue">7</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">⚡</span>
+                        <span class="stat-value" id="xpValue">420</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">📊</span>
+                        <span class="stat-value" id="completionRate">85%</span>
+                    </div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0/5</span>
+                </div>
+            </header>
+
+            <div class="tasks-list" id="tasksList">
+                <!-- Tasks will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Calendar Screen -->
+        <div class="screen" id="calendarScreen">
+            <header class="calendar-header">
+                <div class="month-tabs">
+                    <div class="month-tab">MAY</div>
+                    <div class="month-tab">JUN</div>
+                    <div class="month-tab active">JUL</div>
+                </div>
+            </header>
+
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Calendar will be populated by JavaScript -->
+            </div>
+
+            <div class="calendar-stats">
+                <div class="streak-display">
+                    <span class="streak-label">Current Streak</span>
+                    <span class="streak-number" id="calendarStreak">7 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Profile Screen -->
+        <div class="screen" id="profileScreen">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profileAvatar">🐕</div>
+                    <div class="profile-name" id="profileName">THE GLADIATOR</div>
+                    <div class="profile-level" id="profileLevel">LEVEL 02. BEAGLE</div>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <span class="stat-value" id="profileXP">420</span>
+                        <span class="stat-label">TOTAL XP</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="profileCompletion">85%</span>
+                        <span class="stat-label">COMPLETION</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="profileStreak">7</span>
+                        <span class="stat-label">STREAK</span>
+                    </div>
+                </div>
+
+                <div class="task-management">
+                    <button class="add-task-btn" id="addTaskBtn">+ ADD NEW TASK</button>
+                    
+                    <div class="tasks-section">
+                        <h3 class="section-title">YOUR TASKS</h3>
+                        <div class="task-management-list" id="taskManagementList">
+                            <!-- Task management items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Task Modal -->
+        <div class="modal hidden" id="addTaskModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add New Task</h3>
+                    <button class="modal-close" id="closeModal">×</button>
+                </div>
+                
+                <form class="add-task-form" id="addTaskForm">
+                    <div class="form-group">
+                        <label class="form-label">Task Name</label>
+                        <input type="text" class="form-control" id="taskName" placeholder="Enter task name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select class="form-control" id="taskCategory" required>
+                            <option value="">Select category</option>
+                            <option value="PHYSICAL">PHYSICAL</option>
+                            <option value="MENTAL">MENTAL</option>
+                            <option value="DISCIPLINE">DISCIPLINE</option>
+                            <option value="SOCIAL">SOCIAL</option>
+                            <option value="INTELLECT">INTELLECT</option>
+                            <option value="AMBITION">AMBITION</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Difficulty</label>
+                        <div class="difficulty-options">
+                            <label class="difficulty-option">
+                                <input type="radio" name="difficulty" value="6" required>
+                                <span class="difficulty-label">Easy (+6pts)</span>
+                            </label>
+                            <label class="difficulty-option">
+                                <input type="radio" name="difficulty" value="8" required>
+                                <span class="difficulty-label">Medium (+8pts)</span>
+                            </label>
+                            <label class="difficulty-option">
+                                <input type="radio" name="difficulty" value="12" required>
+                                <span class="difficulty-label">Hard (+12pts)</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn--secondary" id="cancelTask">Cancel</button>
+                        <button type="submit" class="btn btn--primary">Save Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Task Modal -->
+        <div class="modal hidden" id="editTaskModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Edit Task</h3>
+                    <button class="modal-close" id="closeEditModal">×</button>
+                </div>
+                
+                <form class="add-task-form" id="editTaskForm">
+                    <div class="form-group">
+                        <label class="form-label">Task Name</label>
+                        <input type="text" class="form-control" id="editTaskName" placeholder="Enter task name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select class="form-control" id="editTaskCategory" required>
+                            <option value="">Select category</option>
+                            <option value="PHYSICAL">PHYSICAL</option>
+                            <option value="MENTAL">MENTAL</option>
+                            <option value="DISCIPLINE">DISCIPLINE</option>
+                            <option value="SOCIAL">SOCIAL</option>
+                            <option value="INTELLECT">INTELLECT</option>
+                            <option value="AMBITION">AMBITION</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Difficulty</label>
+                        <div class="difficulty-options">
+                            <label class="difficulty-option">
+                                <input type="radio" name="editDifficulty" value="6" required>
+                                <span class="difficulty-label">Easy (+6pts)</span>
+                            </label>
+                            <label class="difficulty-option">
+                                <input type="radio" name="editDifficulty" value="8" required>
+                                <span class="difficulty-label">Medium (+8pts)</span>
+                            </label>
+                            <label class="difficulty-option">
+                                <input type="radio" name="editDifficulty" value="12" required>
+                                <span class="difficulty-label">Hard (+12pts)</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn--secondary" id="cancelEditTask">Cancel</button>
+                        <button type="submit" class="btn btn--primary">Update Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item active" data-screen="skills">
+                <div class="nav-icon">🎯</div>
+            </div>
+            <div class="nav-item" data-screen="tasks">
+                <div class="nav-icon">📋</div>
+            </div>
+            <div class="nav-item" data-screen="calendar">
+                <div class="nav-icon">📅</div>
+            </div>
+            <div class="nav-item" data-screen="profile">
+                <div class="nav-icon">👤</div>
+            </div>
+        </nav>
+
+        <!-- Hold Progress Overlay -->
+        <div class="hold-overlay hidden" id="holdOverlay">
+            <div class="hold-circle">
+                <div class="hold-progress" id="holdProgress"></div>
+                <div class="hold-text">HOLD</div>
+            </div>
+        </div>
+
+        <!-- Completion Notification -->
+        <div class="completion-notification hidden" id="completionNotification">
+            <div class="notification-content">
+                <div class="points-earned" id="pointsEarned">+12</div>
+                <div class="task-completed" id="taskCompleted">TASK COMPLETED!</div>
+            </div>
+        </div>
+
+        <!-- Level Up Notification -->
+        <div class="level-up-notification hidden" id="levelUpNotification">
+            <div class="notification-content">
+                <div class="level-up-emoji" id="levelUpEmoji">🐺</div>
+                <div class="level-up-text">LEVEL UP!</div>
+                <div class="level-up-details" id="levelUpDetails">You are now a WOLF - THE WARRIOR!</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
